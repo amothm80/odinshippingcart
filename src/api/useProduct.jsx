@@ -1,11 +1,7 @@
-import useSWR from "swr";
-
-const fetcher = (key) =>
-  fetch(`https://fakestoreapi.com/products/${key}`).then((res) =>
-    res.json()
-  );
+import useSWR from 'swr';
+import { productsFetcher } from './fetchers.js';
 
 export function useProduct(product) {
-  const {data, error, isLoading} =useSWR(`${product}`, fetcher);
-  return{product: data, isLoading, isError: error}
-} 
+  const { data, error, isLoading } = useSWR(`${product}`, productsFetcher);
+  return { product: data, isLoading, error };
+}

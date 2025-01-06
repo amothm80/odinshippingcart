@@ -1,0 +1,43 @@
+@value colors: "/src/colors.css";
+@value blue300 from colors;
+
+.products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  padding: 1em;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  padding: 1em;
+  width: 350px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  align-items: center;
+  translate: -3px -3px;
+}
+
+.product:active {
+  translate: revert;
+  box-shadow: 0 0 0 0;
+}
+
+.img {
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 600px) {
+  .img {
+    height: 200px;
+    width: 200px;
+  }
+  .product{
+    width: 250px;
+  }
+}
