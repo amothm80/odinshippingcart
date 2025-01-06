@@ -17,7 +17,7 @@
   width: 350px;
   border-radius: 10px;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  align-items: center;
+  /* align-items: center; */
   translate: -3px -3px;
 }
 
@@ -30,6 +30,12 @@
   height: 300px;
   width: 300px;
   object-fit: cover;
+}
+
+.rating{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 @media only screen and (max-width: 600px) {
