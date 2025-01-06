@@ -1,0 +1,14 @@
+html{
+    width: 100%;
+    min-height: 100%;
+}
+body{
+    width: 100%;
+    min-height: 100%;
+}
+#root{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100%;
+}
