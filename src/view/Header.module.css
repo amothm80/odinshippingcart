@@ -1,0 +1,26 @@
+@value colors: "/src/colors.css";
+@value blue300 from colors;
+.header {
+  width: 100vw;
+  height: 100px;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.shopName {
+  color: white;
+  font-weight: 600;
+  font-size: clamp(2rem, 3vw, 3rem);
+  flex-shrink: 0;
+}
+
+.shoppingCart{
+  color: white;
+}
