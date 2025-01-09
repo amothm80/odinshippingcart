@@ -1,5 +1,7 @@
 import styles from './Nav.module.css';
 import { useProductCategories } from '/src/api/useProductCategories.jsx';
+import { Link } from 'react-router';
+
 function capitalizeFirstLetter(category) {
   const categoryWords = category.split(' ');
   const categoryWordsCapitalized = categoryWords.map((word) => {
@@ -8,34 +10,25 @@ function capitalizeFirstLetter(category) {
   return categoryWordsCapitalized.join(' ');
 }
 
-function NavButton({ element, setCategory }) {
+function NavButton({ element }) {
   const category = capitalizeFirstLetter(element);
+  const link = `category/${element}`;
   return (
-    <button
-      className={styles.navButton}
-      onClick={() => {
-        setCategory(element);
-      }}
-    >
+    <Link className={styles.navButton} key={element} to={link}>
       {category}
-    </button>
+    </Link>
   );
 }
 
-export default function Nav({ setCategory }) {
+export default function Nav() {
   const { categories, isLoading, error } = useProductCategories();
   if (error) return <div className={styles.nav}>Failed to Load...</div>;
   if (isLoading) return <div className={styles.nav}>Loading...</div>;
+
   return (
     <nav className={styles.nav}>
       {categories.map((element) => {
-        return (
-          <NavButton
-            key={element}
-            element={element}
-            setCategory={setCategory}
-          />
-        );
+        return <NavButton key={element} element={element} />;
       })}
     </nav>
   );

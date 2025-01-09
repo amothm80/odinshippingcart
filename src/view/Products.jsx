@@ -1,5 +1,7 @@
 import styles from './Products.module.css';
 import { Star } from 'lucide-react';
+import { useParams } from 'react-router';
+import { useProductsForCategory } from '/src/api/useProductsForCategory';
 
 function Product({ title, image, price, rating }) {
   return (
@@ -20,7 +22,9 @@ function Product({ title, image, price, rating }) {
   );
 }
 
-export default function Products({ products, isLoading, error }) {
+export default function Products() {
+  let { category } = useParams();
+  const { products, isLoading, error } = useProductsForCategory(category);
   if (error) return <div>Failed to Load...</div>;
   if (isLoading) return <div className={styles.loader}></div>;
   console.log(products);

@@ -1,1 +1,4 @@
-@value blue300: #93c5fd;
+:export {
+    primary: #171616;
+  }
+  

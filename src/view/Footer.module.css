@@ -1,8 +1,10 @@
+@value colors: "/src/colors.css";
+@value primary from colors;
 .footer{
-  background-color: black;
+  background-color: primary;
   height: 100px;
   flex-shrink: 0;
-  color: white;
+  /* color: white; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -10,6 +12,16 @@
   padding-left: 2rem;
   padding-right: 2rem;
 }
+
+.shopLogo {
+  flex-shrink: 0;
+}
+
+.shopImg{
+  width: 202px;
+  height: 90px;
+}
+
 
 .footerLinks{
   display: flex;

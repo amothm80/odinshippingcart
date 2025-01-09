@@ -1,4 +1,5 @@
 import useSWR from 'swr';
+import useSWRImmutable from 'swr/immutable';
 import { productsFetcher } from './fetchers.js';
 
 export function useProductCategories() {

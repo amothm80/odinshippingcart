@@ -1,28 +1,42 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './main.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './App.jsx';
-import Cart from './view/Cart.jsx';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./main.css";
+import { BrowserRouter, Routes, Route } from "react-router";
+import App from "./App.jsx";
+import Cart from "./view/Cart.jsx";
+import Products from "./view/Products";
+import Product from "./view/Product";
+import Homepage from "./view/Homepage";
+import { ErrorPage } from "./ErrorPage";
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    children: [
-      // { index: true, element: <DefaultProfile /> },
-      // { path: "product/:id", element: <Spinach /> },
-      { path: 'cart', element: <Cart /> },
-    ],
-  },
-]);
+import { ErrorBoundary } from "react-error-boundary";
 
-createRoot(document.getElementById('root')).render(
+function Fallback({ error }) {
+  // Call resetErrorBoundary() to reset the error boundary and retry the render.
+
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre style={{ color: "red" }}>{error.message}</pre>
+    </div>
+  );
+}
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    {/* <App /> */}
-    <StrictMode>
-      <RouterProvider router={router} />
-    </StrictMode>
-    ,
+    <ErrorBoundary FallbackComponent={Fallback}>
+      <BrowserRouter>
+        <Routes>
+          {/* <Route index element={<App />} errorElement={<ErrorPage />} ErrorBoundary={<ErrorPage />}/> */}
+          <Route element={<App />}>
+            <Route index element={<Homepage />} />
+            <Route path="category/:category" element={<Products />} />
+            <Route path="product/:product" element={<Product />} />
+            <Route path="/cart" element={<Cart />} />
+          </Route>
+          <Route path="/*" element={<ErrorPage />} />
+        </Routes>
+      </BrowserRouter>
+    </ErrorBoundary>
   </StrictMode>
 );

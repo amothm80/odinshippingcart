@@ -1,9 +1,9 @@
 @value colors: "/src/colors.css";
-@value blue300 from colors;
+@value primary from colors;
 .header {
   width: 100vw;
   height: 100px;
-  background-color: black;
+  background-color: primary;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -14,13 +14,15 @@
   flex-shrink: 0;
 }
 
-.shopName {
-  color: white;
-  font-weight: 600;
-  font-size: clamp(2rem, 3vw, 3rem);
+.shopLogo {
   flex-shrink: 0;
 }
 
-.shoppingCart{
+.shopImg{
+  width: 202px;
+  height: 90px;
+}
+
+.shoppingCart {
   color: white;
 }

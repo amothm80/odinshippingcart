@@ -1,9 +1,12 @@
-import styles from './Footer.module.css';
+import styles from "./Footer.module.css";
+import { Link } from "react-router";
 
-export default function Footer({ setCategory }) {
+export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <h1 className={styles.shopName}>Odin's Store</h1>
+      <Link className={styles.shopLogo} to="/">
+        <img className={styles.shopImg} src="/src/assets/Ocropped.png" />
+      </Link>
       <div className={styles.footerLinks}>
         <a className={styles.link} href="#">
           Privacy Policy
