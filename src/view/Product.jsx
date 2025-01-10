@@ -1,6 +1,6 @@
 import styles from "./Product.module.css";
 import { Star } from "lucide-react";
-import { useParams } from "react-router";
+import { useOutletContext, useParams } from "react-router";
 import { useProduct } from "/src/api/useProduct";
 
 // function Product({ title, image, price, rating }) {
@@ -23,12 +23,11 @@ import { useProduct } from "/src/api/useProduct";
 // }
 
 export default function Product() {
+  const cartCont = useOutletContext()
   let { id } = useParams();
-  console.log(`product page parameter ${id}`);
   const { product, isLoading, error } = useProduct(id);
   if (error) return <div>Failed to Load...</div>;
   if (isLoading) return <div className={styles.loader}></div>;
-  console.log(product);
   return (
     <div className={styles.productView}>
       <div className={styles.imageDiv}>
@@ -47,7 +46,7 @@ export default function Product() {
             </span>
           </div>
         </div>
-        <button>Add to Cart</button>
+        <button onClick={()=>{cartCont.addProduct(id)}}>Add to Cart</button>
       </div>
     </div>
   );

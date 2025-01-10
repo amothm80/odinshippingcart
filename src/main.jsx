@@ -31,8 +31,11 @@ createRoot(document.getElementById("root")).render(
           <Route element={<App />}>
             <Route index element={<Homepage />} />
             <Route path="category/:category" element={<Products />} />
-            <Route path="product/:id" element={<Product />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route
+              path="product/:id"
+              element={<Product  />}
+            />
+            <Route path="/cart" element={<Cart  />} />
           </Route>
           <Route path="/*" element={<ErrorPage />} />
         </Routes>

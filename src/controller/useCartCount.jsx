@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-export default function useCartCount(){
-    const [counter, setCounter] = useState(0);
-
+export default function useCartCount(cartCont){
+    const [counter, setCounter] = useState(cartCont.getCartLength());
+    
     useEffect(() => {
       const key = setInterval(() => {
-        setCounter(count => count + 1)
-      }, 5000);
+        setCounter( cartCont.getCartLength())
+      }, 500);
   
       return () => {
         clearInterval(key);

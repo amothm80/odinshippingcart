@@ -5,8 +5,9 @@ import { Link } from "react-router";
 import Nav from "./Nav";
 import useCartCount from "../controller/useCartCount";
 
-function CartIcon() {
-  const { counter } = useCartCount();
+function CartIcon({cartCont}) {
+  const { counter } = useCartCount(cartCont);
+ 
   return (
     <div className={styles.cartSection}>
       <Link className={styles.cartIcon} to="cart">
@@ -25,14 +26,14 @@ function CartIcon() {
   );
 }
 
-export default function Header() {
+export default function Header({cartCont}) {
   return (
     <header className={styles.header}>
       <Link className={styles.shopLogo} to="/">
         <img className={styles.shopImg} src="/src/assets/Ocropped.png" />
       </Link>
       <Nav />
-      <CartIcon />
+      <CartIcon cartCont={cartCont} />
     </header>
   );
 }
