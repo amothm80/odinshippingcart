@@ -2,10 +2,11 @@ import styles from './Products.module.css';
 import { Star } from 'lucide-react';
 import { useParams } from 'react-router';
 import { useProductsForCategory } from '/src/api/useProductsForCategory';
+import { Link } from 'react-router';
 
-function Product({ title, image, price, rating }) {
+function Product({id, title, image, price, rating }) {
   return (
-    <div className={styles.product}>
+    <Link to={`/product/${id}`} className={styles.product}>
       <img className={styles.img} src={image} alt="" />
 
       <div>{title}</div>
@@ -18,7 +19,7 @@ function Product({ title, image, price, rating }) {
           <span className={styles.ratingCount}>({rating.count})</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -27,7 +28,6 @@ export default function Products() {
   const { products, isLoading, error } = useProductsForCategory(category);
   if (error) return <div>Failed to Load...</div>;
   if (isLoading) return <div className={styles.loader}></div>;
-  console.log(products);
   return (
     <div className={styles.products}>
       {products.map((element) => {

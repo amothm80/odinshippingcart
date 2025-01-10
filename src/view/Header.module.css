@@ -18,11 +18,51 @@
   flex-shrink: 0;
 }
 
-.shopImg{
+.shopImg {
   width: 202px;
   height: 90px;
 }
 
 .shoppingCart {
   color: white;
+}
+
+.cartIcon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartSection{
+  position: relative;
+}
+.cartCount {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 20px;
+  width: 20px;
+  border: 2px;
+  border-color: white;
+  border-style: solid;
+  border-radius: 999px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2px;
+
+  z-index: 2;
+}
+
+.cartCountNormal{
+  composes: cartCount;
+  background-color: primary;
+}
+
+.cartCountFill{
+  composes: cartCount;
+  background-color: white;
 }

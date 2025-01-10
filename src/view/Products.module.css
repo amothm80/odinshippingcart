@@ -1,5 +1,5 @@
 @value colors: "/src/colors.css";
-@value blue300 from colors;
+@value primary from colors;
 
 .products {
   display: flex;
@@ -9,6 +9,7 @@
   padding: 1em;
   justify-content: center;
   flex-grow: 2;
+  text-decoration: none;
 }
 
 .product {
@@ -23,6 +24,8 @@
   translate: -3px -3px;
   font-weight: 600;
   align-items: center;
+  text-decoration: none;
+color: primary;
 
 }
 
