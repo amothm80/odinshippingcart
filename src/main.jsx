@@ -8,6 +8,8 @@ import Products from "./view/Products";
 import Product from "./view/Product";
 import Homepage from "./view/Homepage";
 import { ErrorPage } from "./ErrorPage";
+import PropTypes from 'prop-types';
+
 
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -20,6 +22,10 @@ function Fallback({ error }) {
       <pre style={{ color: "red" }}>{error.message}</pre>
     </div>
   );
+}
+
+Fallback.propTypes={
+  error: PropTypes.object
 }
 
 createRoot(document.getElementById("root")).render(

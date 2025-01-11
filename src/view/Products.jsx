@@ -38,7 +38,7 @@ export default function Products() {
   if (error) return <div>Failed to Load...</div>;
   if (isLoading) return <div className={styles.loader}></div>;
   return (
-    <div className={styles.products}>
+    products? <div className={styles.products}>
       {products.map((element) => {
         return (
           <Product
@@ -51,6 +51,6 @@ export default function Products() {
           />
         );
       })}
-    </div>
+    </div>:<div>Failed to Load...</div>
   );
 }

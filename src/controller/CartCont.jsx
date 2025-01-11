@@ -4,15 +4,16 @@ export const CartCont = () => {
   const getCart = () => {
     return cart;
   };
-  const addProduct = (productId) => {
+  const addProduct = (productId, price) => {
     let quantity = 1;
     if (cart.has(productId)) {
-      quantity = cart.get(productId) + 1;
+      quantity = cart.get(productId).quantity + 1;
     }
-    cart.set(productId, quantity);
+    cart.set(productId, {quantity,price});
   };
   const modifyProduct = (productId, quantity) => {
-    cart.set(productId, quantity);
+    let price = cart.get(productId).price;
+    cart.set(productId, {quantity,price});
   };
   const removeProduct = (productId) => {
     cart.delete(productId);
