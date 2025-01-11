@@ -1,12 +1,13 @@
 import styles from "./Footer.module.css";
 import { Link } from "react-router";
+import logo from '../assets/Ocropped.png'
 
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
       <Link className={styles.shopLogo} to="/">
-        <img className={styles.shopImg} src="/src/assets/Ocropped.png" />
+        <img className={styles.shopImg} src={logo} />
       </Link>
       <div className={styles.footerLinks}>
         <a className={styles.link} href="#">

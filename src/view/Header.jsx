@@ -2,6 +2,7 @@ import styles from "./Header.module.css";
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router";
 import PropTypes from 'prop-types';
+import logo from '../assets/Ocropped.png'
 
 
 import Nav from "./Nav";
@@ -36,7 +37,7 @@ export default function Header({cartCont}) {
   return (
     <header className={styles.header}>
       <Link className={styles.shopLogo} to="/">
-        <img className={styles.shopImg} src="/src/assets/Ocropped.png" />
+        <img className={styles.shopImg} src={logo} />
       </Link>
       <Nav />
       <CartIcon cartCont={cartCont} />
