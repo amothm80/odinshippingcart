@@ -1,10 +1,11 @@
 import styles from './Homepage.module.css';
+import hompageImage from '../assets/homepage.jpg'
 
 export default function Homepage() {
   return (
     <div className={styles.homepage}>
       <div className={styles.imageSection}>
-        <img className={styles.image} src="../assets/homepage.jpg" alt="" />
+        <img className={styles.image} src={hompageImage} alt="" />
       </div>
       <div className={styles.heroWriteup}>
         <h2>Welcome to Odin Store – Your One-Stop Shop for Everything!</h2>
