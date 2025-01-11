@@ -1,6 +1,8 @@
 import styles from "./Header.module.css";
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router";
+import PropTypes from 'prop-types';
+
 
 import Nav from "./Nav";
 import useCartCount from "../controller/useCartCount";
@@ -26,6 +28,10 @@ function CartIcon({cartCont}) {
   );
 }
 
+CartIcon.propTypes = {
+  cartCont : PropTypes.object
+}
+
 export default function Header({cartCont}) {
   return (
     <header className={styles.header}>
@@ -37,3 +43,8 @@ export default function Header({cartCont}) {
     </header>
   );
 }
+
+Header.propTypes = {
+  cartCont : PropTypes.object
+}
+

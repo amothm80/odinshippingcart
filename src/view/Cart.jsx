@@ -1,10 +1,12 @@
 import styles from "./Cart.module.css";
-import { Link, useOutletContext } from "react-router";
+import { useOutletContext } from "react-router";
 import { useProduct } from "/src/api/useProduct";
 import { useState } from "react";
-import { array } from "prop-types";
+import PropTypes from 'prop-types';
 
-function CartEntry({ entry, cartCont, deleteCart, refreshCart, subtotals }) {
+
+
+function CartEntry({ entry, cartCont, refreshCart, subtotals }) {
   const [quantity, setQuantity] = useState(entry[1]);
   const { product, isLoading, error } = useProduct(entry[0]);
   function deleteCart(e) {
@@ -37,6 +39,14 @@ function CartEntry({ entry, cartCont, deleteCart, refreshCart, subtotals }) {
   );
 }
 
+CartEntry.propTypes ={
+  entry: PropTypes.array,
+  cartCont: PropTypes.object,
+  deleteCart: PropTypes.func,
+  refreshCart: PropTypes.func,
+  subtotals: PropTypes.number,
+}
+
 function CartTotal({subtotals}) {
   const total = subtotals.reduce((prev,cur)=>prev+cur,0)
   return (
@@ -51,6 +61,10 @@ function CartTotal({subtotals}) {
       <div></div>
     </>
   );
+}
+
+CartTotal.propTypes ={
+  subtotals: PropTypes.number,
 }
 
 export default function Cart() {

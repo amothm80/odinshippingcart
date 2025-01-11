@@ -3,6 +3,7 @@ import { Star } from 'lucide-react';
 import { useParams } from 'react-router';
 import { useProductsForCategory } from '/src/api/useProductsForCategory';
 import { Link } from 'react-router';
+import PropTypes from 'prop-types';
 
 function Product({id, title, image, price, rating }) {
   return (
@@ -21,6 +22,14 @@ function Product({id, title, image, price, rating }) {
       </div>
     </Link>
   );
+}
+
+Product.propTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string,
+  image: PropTypes.string,
+  price: PropTypes.number,
+  rating: PropTypes.number,
 }
 
 export default function Products() {

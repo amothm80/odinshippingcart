@@ -3,24 +3,7 @@ import { Star } from "lucide-react";
 import { useOutletContext, useParams } from "react-router";
 import { useProduct } from "/src/api/useProduct";
 
-// function Product({ title, image, price, rating }) {
-//   return (
-//     <div className={styles.product}>
-//       <img className={styles.img} src={image} alt="" />
 
-//       <div>{title}</div>
-
-//       <div className={styles.footer}>
-//         <div>${price}</div>
-//         <div className={styles.rating}>
-//           <Star strokeWidth={2} size={16} />
-//           {rating.rate}{' '}
-//           <span className={styles.ratingCount}>({rating.count})</span>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
 
 export default function Product() {
   const cartCont = useOutletContext()

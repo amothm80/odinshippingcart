@@ -1,6 +1,7 @@
 import styles from './Nav.module.css';
 import { useProductCategories } from '/src/api/useProductCategories.jsx';
 import { Link } from 'react-router';
+import PropTypes from 'prop-types';
 
 function capitalizeFirstLetter(category) {
   const categoryWords = category.split(' ');
@@ -18,6 +19,10 @@ function NavButton({ element }) {
       {category}
     </Link>
   );
+}
+
+NavButton.propTypes = {
+  element: PropTypes.string,
 }
 
 export default function Nav() {
