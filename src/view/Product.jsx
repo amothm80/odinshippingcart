@@ -46,7 +46,7 @@ export default function Product() {
             </span>
           </div>
         </div>
-        <button onClick={()=>{cartCont.addProduct(id,product.price)}} className="button">Add to Cart</button>
+        <button onClick={()=>{cartCont.addProduct(id)}} className="button">Add to Cart</button>
       </div>
     </div>
   );

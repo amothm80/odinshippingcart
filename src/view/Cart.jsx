@@ -4,8 +4,8 @@ import { useProduct } from "/src/api/useProduct";
 import { useState } from "react";
 import { array } from "prop-types";
 
-function CartEntry({ entry, cartCont, deleteCart, refreshCart }) {
-  const [quantity, setQuantity] = useState(entry[2]);
+function CartEntry({ entry, cartCont, deleteCart, refreshCart, subtotals }) {
+  const [quantity, setQuantity] = useState(entry[1]);
   const { product, isLoading, error } = useProduct(entry[0]);
   function deleteCart(e) {
     console.log(`deleted product ${e.target.id}`);
@@ -21,7 +21,7 @@ function CartEntry({ entry, cartCont, deleteCart, refreshCart }) {
   }
   if (error) return <div>Failed to Load...</div>;
   if (isLoading) return <div>loadin...</div>;
-  const subtotal = quantity * product.price;
+  subtotals.push( quantity * product.price)
   return (
     <>
       <img src={product.image} className={styles.image} alt="" />
@@ -29,7 +29,7 @@ function CartEntry({ entry, cartCont, deleteCart, refreshCart }) {
       <input type="number" value={quantity} onChange={onValueChange} />
       <h3>{product.price}</h3>
       <h4>subtotal:</h4>
-      <h3>${subtotal}</h3>
+      <h3>${quantity * product.price}</h3>
       <button id={product.id} onClick={deleteCart} className="button">
         delete
       </button>
@@ -37,13 +37,8 @@ function CartEntry({ entry, cartCont, deleteCart, refreshCart }) {
   );
 }
 
-function CartTotal({ cart }) {
-
-  const total = Array.from(cart).reduce((tot, entry) => {
-    console.log(`subtot = ${tot}`)
-    console.log(`current = ${entry[2]}`)
-    return tot + entry[1];
-  }, 0);
+function CartTotal({subtotals}) {
+  const total = subtotals.reduce((prev,cur)=>prev+cur,0)
   return (
     <>
       <div></div>
@@ -61,7 +56,7 @@ function CartTotal({ cart }) {
 export default function Cart() {
   const cartCont = useOutletContext();
   const [cart, setCart] = useState(cartCont.getCart());
-
+  let subtotals = [];
   function refreshCart() {
     let newCart = cartCont.getCart();
     setCart(new Map(newCart));
@@ -78,10 +73,11 @@ export default function Cart() {
             entry={entry}
             cartCont={cartCont}
             refreshCart={refreshCart}
+            subtotals = {subtotals}
           />
         );
       })}
-      <CartTotal cart={cart} />
+      <CartTotal subtotals={subtotals} />
     </div>
   ) : (
     <div className={styles.emptyCart}>
