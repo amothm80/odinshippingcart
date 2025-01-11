@@ -2,38 +2,90 @@ import styles from "./Cart.module.css";
 import { Link, useOutletContext } from "react-router";
 import { useProduct } from "/src/api/useProduct";
 import { useState } from "react";
+import { array } from "prop-types";
 
-function CartEntry({ entry, cartCont }) {
-  const [quantity, setQuantity] = useState(entry[1]);
+function CartEntry({ entry, cartCont, deleteCart, refreshCart }) {
+  const [quantity, setQuantity] = useState(entry[2]);
   const { product, isLoading, error } = useProduct(entry[0]);
-  function onValueChange(e){
-    setQuantity(e.target.value)
-    cartCont.modifyProduct(entry[0],e.target.value)
+  function deleteCart(e) {
+    console.log(`deleted product ${e.target.id}`);
+    cartCont.removeProduct(e.target.id);
+    refreshCart();
+  }
+
+  function onValueChange(e) {
+    setQuantity(e.target.value);
+    cartCont.modifyProduct(entry[0], parseInt(e.target.value));
+    refreshCart();
+    // calculateTotal(cartCont.getCart())
   }
   if (error) return <div>Failed to Load...</div>;
   if (isLoading) return <div>loadin...</div>;
   const subtotal = quantity * product.price;
-
   return (
-    <div className={styles.cartLine}>
+    <>
+      <img src={product.image} className={styles.image} alt="" />
       <h3>{product.title}</h3>
       <input type="number" value={quantity} onChange={onValueChange} />
       <h3>{product.price}</h3>
       <h4>subtotal:</h4>
-      <h3>{subtotal}</h3>
-      <button>delete</button>
-    </div>
+      <h3>${subtotal}</h3>
+      <button id={product.id} onClick={deleteCart} className="button">
+        delete
+      </button>
+    </>
+  );
+}
+
+function CartTotal({ cart }) {
+
+  const total = Array.from(cart).reduce((tot, entry) => {
+    console.log(`subtot = ${tot}`)
+    console.log(`current = ${entry[2]}`)
+    return tot + entry[1];
+  }, 0);
+  return (
+    <>
+      <div></div>
+      <div></div>
+
+      <div></div>
+      <div></div>
+      <h4>Total:</h4>
+      <h3>${total}</h3>
+      <div></div>
+    </>
   );
 }
 
 export default function Cart() {
   const cartCont = useOutletContext();
-  const cart = cartCont.getCart();
+  const [cart, setCart] = useState(cartCont.getCart());
+
+  function refreshCart() {
+    let newCart = cartCont.getCart();
+    setCart(new Map(newCart));
+  }
+
+  console.log("cart mounted");
+  console.log(cart);
   return cartCont.getCartLength() > 0 ? (
-    Array.from(cart).map((entry) => {
-      return <CartEntry key={entry[0]} entry={entry} cartCont={cartCont} />;
-    })
+    <div className={styles.cartLine}>
+      {Array.from(cart).map((entry) => {
+        return (
+          <CartEntry
+            key={entry[0]}
+            entry={entry}
+            cartCont={cartCont}
+            refreshCart={refreshCart}
+          />
+        );
+      })}
+      <CartTotal cart={cart} />
+    </div>
   ) : (
-    <h1>add some products</h1>
+    <div className={styles.emptyCart}>
+      <h1>Add Some Products</h1>
+    </div>
   );
 }

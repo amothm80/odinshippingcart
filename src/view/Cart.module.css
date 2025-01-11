@@ -2,7 +2,25 @@
 @value primary from colors;
 
 .cartLine{
-    display: flex;
+    display: grid;
     flex-direction: row;
+    grid-template-columns: 0.5fr 4fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
     gap: 10px
+}
+
+.emptyCart{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.image{
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
 }
