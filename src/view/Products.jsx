@@ -29,7 +29,7 @@ Product.propTypes = {
   title: PropTypes.string,
   image: PropTypes.string,
   price: PropTypes.number,
-  rating: PropTypes.number,
+  rating: PropTypes.object,
 }
 
 export default function Products() {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function useCartCount(cartCont){
-    const [counter, setCounter] = useState(cartCont.getCartLength());
+    const [counter, setCounter] = useState(cartCont.getCartLength);
     
     useEffect(() => {
       const key = setInterval(() => {

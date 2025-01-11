@@ -10,7 +10,6 @@ function CartEntry({ entry, cartCont, refreshCart }) {
   const [quantity, setQuantity] = useState(entry[1].quantity);
   const { product, isLoading, error } = useProduct(entry[0]);
   function deleteCart(e) {
-    console.log(`deleted product ${e.target.id}`);
     cartCont.removeProduct(e.target.id);
     refreshCart();
   }
@@ -69,7 +68,7 @@ CartTotal.propTypes ={
 
 export default function Cart() {
   const cartCont = useOutletContext();
-  const [cart, setCart] = useState(cartCont.getCart());
+  const [cart, setCart] = useState(cartCont.getCart);
   function refreshCart() {
     let newCart = cartCont.getCart();
     setCart(new Map(newCart));
