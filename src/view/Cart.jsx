@@ -3,7 +3,8 @@ import { useOutletContext } from "react-router";
 import { useProduct } from "/src/api/useProduct";
 import { useState } from "react";
 import PropTypes from 'prop-types';
-
+import { useContext } from "react";
+import { ShopContext } from "../controller/ShopContext.jsx";
 
 
 function CartEntry({ entry, cartCont, refreshCart }) {
@@ -67,7 +68,7 @@ CartTotal.propTypes ={
 }
 
 export default function Cart() {
-  const cartCont = useOutletContext();
+  const { cartCont } = useContext(ShopContext); 
   const [cart, setCart] = useState(cartCont.getCart);
   function refreshCart() {
     let newCart = cartCont.getCart();

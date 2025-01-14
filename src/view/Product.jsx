@@ -2,11 +2,13 @@ import styles from "./Product.module.css";
 import { Star } from "lucide-react";
 import { useOutletContext, useParams } from "react-router";
 import { useProduct } from "/src/api/useProduct";
-
+import { useContext } from "react";
+import { ShopContext } from "../controller/ShopContext.jsx";
 
 
 export default function Product() {
-  const cartCont = useOutletContext()
+  // const cartCont = useOutletContext()
+  const { cartCont } = useContext(ShopContext); // We must pass the ShopContext object itself as an argument
   let { id } = useParams();
   const { product, isLoading, error } = useProduct(id);
   if (error) return <div>Failed to Load...</div>;
